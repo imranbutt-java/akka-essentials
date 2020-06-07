@@ -36,7 +36,7 @@ object AdvancedRecap extends App {
 
   pfChain(5) // 999 per partialFunction
   pfChain(60) // 9000
-  pfChain(457) // throw a MatchError
+//  pfChain(457) // throw a MatchError
 
   // type aliases
   type ReceiveFunction = PartialFunction[Any, Unit]
