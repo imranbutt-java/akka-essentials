@@ -13,6 +13,7 @@ object ActorCapabilities extends App {
       case SpecialMessage(contents) => println(s"[simple actor] I have received something SPECIAL: $contents")
       case SendMessageToYourself(content) =>
         self ! content
+      case actor: ActorRef => println(s"${self.path.name} said hi to ${actor.path.name}")
       case SayHiTo(ref) => ref ! "Hi!" // alice is being passed as the sender
       case WirelessPhoneMessage(content, ref) => ref forward (content + "s") // i keep the original sender of the WPM
     }
@@ -42,6 +43,7 @@ object ActorCapabilities extends App {
   // 3 - actors can REPLY to messages
   val alice = system.actorOf(Props[SimpleActor], "alice")
   val bob = system.actorOf(Props[SimpleActor], "bob")
+  alice ! bob
 
   case class SayHiTo(ref: ActorRef)
   alice ! SayHiTo(bob)
@@ -117,7 +119,6 @@ object ActorCapabilities extends App {
 
   class BankAccount extends Actor {
     import BankAccount._
-
     var funds = 0
 
     override def receive: Receive = {

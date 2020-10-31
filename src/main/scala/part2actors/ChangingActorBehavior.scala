@@ -4,7 +4,6 @@ import akka.actor.{Actor, ActorRef, ActorSystem, Props}
 
 object ChangingActorBehavior extends App {
 
-
   object FussyKid {
     case object KidAccept
     case object KidReject
@@ -60,9 +59,9 @@ object ChangingActorBehavior extends App {
       case MomStart(kidRef) =>
         // test our interaction
         kidRef ! Food(VEGETABLE)
+        kidRef ! Food(CHOCOLATE)
+        kidRef ! Food(CHOCOLATE)
         kidRef ! Food(VEGETABLE)
-        kidRef ! Food(CHOCOLATE)
-        kidRef ! Food(CHOCOLATE)
         kidRef ! Ask("do you want to play?")
       case KidAccept => println("Yay, my kid is happy!")
       case KidReject => println("My kid is sad, but as he's healthy!")

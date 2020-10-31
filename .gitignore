@@ -102,4 +102,6 @@ project/plugins/project/
 .idea/*
 # End of https://www.gitignore.io/api/sbt,scala,intellij
 
+.idea
 
+.idea/.name
